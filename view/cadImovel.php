@@ -34,7 +34,7 @@ require_once "./controller/ImovelController.php";
 					<img src="view/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="" method="POST" name="cadImovel" id="cadUImovels">
+				<form class="login100-form validate-form" action="" method="POST" name="cadImovel" id="cadUImovels" enctype="multpart/form-data">
 					<span class="login100-form-title">
                         Cadastro de imovel
 					</span>
@@ -55,6 +55,10 @@ require_once "./controller/ImovelController.php";
 
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input class="input100" type="number" name="valor" placeholder="valor"  value="<?php echo isset($imovel)?$imovel->getValor():'';?>">
+						<span class="focus-input100"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="file" name="foto" id="foto" placeholder="foto">
 						<span class="focus-input100"></span>
 					</div>
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">

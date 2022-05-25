@@ -10,6 +10,7 @@ class Imovel extends Banco{
     private $foto;
     private $valor;
     private $tipo;
+    private $fotoTipo;
 
     public function getId(){
         return $this->id;
@@ -33,6 +34,14 @@ class Imovel extends Banco{
 
     public function setFoto($foto){
         $this->foto = $foto;
+    }
+
+    public function setFotoTipo($fotoTipo){
+        $this->fotoTipo = $fotoTipo;
+    }
+
+    public function getFotoTipo(){
+        return $this->fotoTipo;
     }
 
     public function getValor(){
@@ -60,20 +69,20 @@ class Imovel extends Banco{
         if($conn = $conexao->getConection()){
             if($this->id > 0){
 
-                $query = "UPDATE imovel SET descricao = :descricao, foto = :foto, valor = :valor, tipo = :tipo WHERE id = :id";
+                $query = "UPDATE imovel SET descricao = :descricao, foto = :foto, valor = :valor, tipo = :tipo, fotoTipo = :fotoTipo   WHERE id = :id";
 
                 $stmt = $conn->prepare($query);
 
-                if ($stmt->execute(array(":descricao" => $this->descricao, ":foto" => $this->foto, ":valor" => $this->valor, ":tipo" =>$this->tipo, ":id"=> $this->id))) {
+                if ($stmt->execute(array(":descricao" => $this->descricao, ":foto" => $this->foto, ":valor" => $this->valor, ":tipo" =>$this->tipo,":fotoTipo"=>$this->fotoTipo, ":id"=> $this->id))) {
                     $result = $stmt->rowCount();
                 }
             }else{
 
-                $query = "insert into imovel (id, descricao, foto, valor, tipo) values (null,:descricao,:foto,:valor,:tipo)";
+                $query = "insert into imovel (id, descricao, foto, valor,fotoTipo, tipo) values (null,:descricao,:foto,:valor,:fotoTipo,:tipo)";
 
                 $stmt = $conn->prepare($query);
 
-                if ($stmt->execute(array(":descricao" => $this->descricao, ":foto" => $this->foto, ":valor" => $this->valor, ":tipo" =>$this->tipo))) {
+                if ($stmt->execute(array(":descricao" => $this->descricao, ":foto" => $this->foto, ":valor" => $this->valor, ":tipo" =>$this->tipo,"fotoTipo"=>$this->fotoTipo))) {
                     $result = $stmt->rowCount();
                 }
 
